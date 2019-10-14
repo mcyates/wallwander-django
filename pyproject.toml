@@ -7,6 +7,8 @@ authors = ["Matthew Yates <Mat.C.Yates@gmail.com>"]
 [tool.poetry.dependencies]
 python = "^3.7"
 django = "^2.2"
+djangorestframework = "^3.10"
+django-environ = "^0.4.5"
 
 [tool.poetry.dev-dependencies]
 
