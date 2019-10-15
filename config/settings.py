@@ -72,14 +72,17 @@ WSGI_APPLICATION = "config.wsgi.application"
 
 DATABASES = {
     "default": {
-        # "ENGINE": "django.db.backends.sqlite3",
-        # "NAME": str(ROOT_DIR.path("db.sqlite3")),
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "postgres",
         "USER": "postgres",
         "PASSWORD": "docker",
         "HOST": "127.0.0.1",
         "PORT": 5432,
+        "OPTIONS": {
+            "client_encoding": "UTF8",
+            "default_transaction_isolation": "read committed",
+            "timezone": "UTC",
+        },
     }
 }
 
