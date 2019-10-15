@@ -10,24 +10,20 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
-# import os
-import environ
+import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-ROOT_DIR = environ.Path(__file__) - 2
-APPS_DIR = ROOT_DIR.path('project')
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-env = environ.Env()
 
-env_file = str(ROOT_DIR.path('.env'))
-env.read_env(env_file)
-print('The env file has been loaded')
+# Quick-start development settings - unsuitable for production
+# See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('DJANGO_SECRET_KEY')
+SECRET_KEY = 'gz7=%wkb*o#l6psr85nb@)9v^-dnih@bd-8-mh2=(*e&y%nb2%'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env.bool('DJANGO_DEBUG')
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -41,8 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
-    'project.api'
 ]
 
 MIDDLEWARE = [
@@ -82,7 +76,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': str(ROOT_DIR.path('db.sqlite3')),
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
@@ -111,7 +105,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'America/New_York'
+TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
@@ -124,21 +118,3 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = str(ROOT_DIR('staticfiles'))
-
-STATICFILES_DIRS = (
-    str(APPS_DIR.path('static')),
-)
-
-STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-)
-
-MEDIA_URL = '/media/'
-
-MEDIA_ROOT = str(APPS_DIR('media'))
-
-REST_FRAMEWORK = {
-
-}

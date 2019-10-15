@@ -1,1 +1,0 @@
-# wallwander-django
