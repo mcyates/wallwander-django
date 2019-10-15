@@ -72,8 +72,14 @@ WSGI_APPLICATION = "config.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": str(ROOT_DIR.path("db.sqlite3")),
+        # "ENGINE": "django.db.backends.sqlite3",
+        # "NAME": str(ROOT_DIR.path("db.sqlite3")),
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "postgres",
+        "USER": "postgres",
+        "PASSWORD": "docker",
+        "HOST": "127.0.0.1",
+        "PORT": 5432,
     }
 }
 
@@ -96,7 +102,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = "America/New_York"
+TIME_ZONE = "UTC"
 
 USE_I18N = True
 
