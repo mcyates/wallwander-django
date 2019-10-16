@@ -36,6 +36,8 @@ INSTALLED_APPS = [
     "api",
 ]
 
+AUTH_USER_MODEL = "api.models.User"
+
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -78,11 +80,6 @@ DATABASES = {
         "PASSWORD": "docker",
         "HOST": "127.0.0.1",
         "PORT": 5432,
-        "OPTIONS": {
-            "client_encoding": "UTF8",
-            "default_transaction_isolation": "read committed",
-            "timezone": "UTC",
-        },
     }
 }
 
