@@ -1,4 +1,31 @@
 from fastapi import FastAPI
+from pydantic import BaseModel
+from datetime import datetime
+
+
+class User(BaseModel):
+    id: str
+    email: str
+    uploads: int = 0
+    name: str = ""
+    hash: str
+    nsfw: bool = False
+    created_at: datetime
+
+
+class Image(BaseModel):
+    id: str
+    url: str
+    secure_url: str
+    title: str
+    height: int
+    width: int
+    format: str
+    nsfw: bool = False
+    views: int = 0
+    created_at: datetime = None
+    author_id: str
+
 
 app = FastAPI()
 
