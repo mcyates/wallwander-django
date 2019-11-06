@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, File, UploadFile
 from pydantic import BaseModel
 from datetime import datetime
 
@@ -11,6 +11,11 @@ class User(BaseModel):
     hash: str
     nsfw: bool = False
     created_at: datetime
+
+
+class UserIn(BaseModel):
+    email: str
+    hash: str
 
 
 class Image(BaseModel):
@@ -31,7 +36,7 @@ app = FastAPI()
 
 
 @app.post("/users/register")
-async def create_user(user: User):
+async def create_user(user: UserIn):
     return user
 
 
@@ -48,3 +53,8 @@ async def get_all_images():
 @app.get("/images/uploads/{user_id}")
 async def read_item(skip: int = 0, limit: int = 10, page: int = 1):
     return {"images": [{"url": "foobar.com"}]}
+
+
+@app.post("/images/upload")
+async def upload_image(file: UploadFile = File(...)):
+    return {"filename": file.filename}
