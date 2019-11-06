@@ -30,6 +30,11 @@ class Image(BaseModel):
 app = FastAPI()
 
 
+@app.post("/users/register")
+async def create_user(user: User):
+    return user
+
+
 @app.get("/")
 async def root():
     return {"message": "Hello world!"}
